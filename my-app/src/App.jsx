@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Login from "./pages/Login";
+import TaskList from "./pages/TaskList";
+import TaskForm from "./pages/TaskForm";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { isAdmin } from "./api/roleService";
 
+
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Routes>
 
-export default App
+        {/* Public Route */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Protected Routes */}
+        <Route
+          path="/tasks"
+          element={
+            <ProtectedRoute>
+              <TaskList />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/add"
+          element={
+            isAdmin() ? (
+              <ProtectedRoute><TaskForm /></ProtectedRoute>
+            ) : (
+              <Navigate to="/tasks" />
+            )
+          }
+        />
+
+        <Route
+          path="/edit/:id"
+          element={
+            isAdmin() ? (
+              <ProtectedRoute><TaskForm /></ProtectedRoute>
+            ) : (
+              <Navigate to="/tasks" />
+            )
+          }
+        />
+
+        {/* Default Route */}
+        <Route path="*" element={<Login />} />
+
+      </Routes>
+    </Router>
+  );
+}

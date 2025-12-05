@@ -16,7 +16,7 @@ export const generateRandomDate = () => {
     const today = new Date()
     const randomDays = Math.floor(Math.random() * 30) + 1
     const dueDate = new Date(today)
-    dueDate.setDate(today.getDate + randomDays)
+    dueDate.setDate(today.getDate() + randomDays)
 
     return dueDate.toISOString().split("T")[0]
 }

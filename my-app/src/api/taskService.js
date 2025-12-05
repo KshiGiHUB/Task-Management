@@ -4,7 +4,7 @@ import { generateDescription, generateRandomDate } from "../utils/generateDummy"
 export const fetchTasks = async () => {
     const res = await axios.get("https://jsonplaceholder.typicode.com/todos")
 
-    return res.data.slice(0, 20).map((task) => ({
+    return res.data.map((task) => ({
         id: task.id,
         title: task.title,
         completed: task.completed,
@@ -14,12 +14,16 @@ export const fetchTasks = async () => {
     }))
 }
 
+export const getSingleTask = async (id) => {
+    const tasks = await fetchTasks();
+    return tasks.find((task) => task.id === Number(id));
+};
 
 export const createTask = async (task) => {
     return axios.post("https://jsonplaceholder.typicode.com/todos", task)
 }
 
 
-export const updateTask = aynsc(task) => {
+export const updateTask = async (task) => {
     return axios.put(`https://jsonplaceholder.typicode.com/todos/${task.id}`, task)
 }

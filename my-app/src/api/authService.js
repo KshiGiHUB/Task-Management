@@ -12,7 +12,7 @@ export const loginUser = async (username, password) => {
             });
         const token = res.data.token;
         localStorage.setItem("token", token)
-        localStorage.setItem("user", JSON.stringify(res.data))
+        // localStorage.setItem("user", JSON.stringify(res.data))
 
         const role = username === "mor_2314" ? "admin" : "user";
         localStorage.setItem("role", role);
@@ -28,7 +28,8 @@ export const isAuthenticated = () => {
     return !!localStorage.getItem("token")
 }
 
-export const isLogout = () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-}
+export const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+};

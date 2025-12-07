@@ -8,7 +8,7 @@ export default function TaskFilter({ status, setStatus }) {
         >
             <option value="All">All</option>
             <option value="Pending">Pending</option>
-            {/* <option value="In Progress">In Progress</option> */}
+            <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
         </select>
     );

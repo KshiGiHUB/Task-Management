@@ -91,6 +91,4 @@ npm run dev
 
 ✅ 6. User-Friendly UI
       Used TailwindCSS to create clean inputs, buttons, layout, and responsive design.
-Search & filter tasks
 
-Cannot add or edit tasks

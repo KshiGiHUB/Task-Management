@@ -78,8 +78,19 @@ export default function TaskList() {
                  shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold text-gray-800">Task Management</h2>
+
+
+          {isAdmin() && (
+            <Link
+              to="/add"
+              className="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold 
+                        hover:bg-blue-700 shadow transition"
+            >
+              Add
+            </Link>
+          )}
+          <div className="flex justify-between items-center">
+            {/* <h2 className="text-3xl font-bold text-gray-800">Task Management</h2> */}
 
             <button
               onClick={logout}
@@ -88,16 +99,6 @@ export default function TaskList() {
               Logout
             </button>
           </div>
-
-          {isAdmin() && (
-            <Link
-              to="/add"
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold 
-                        hover:bg-blue-700 shadow transition"
-            >
-              + Add Task
-            </Link>
-          )}
         </div>
 
         <DragDropContext onDragEnd={onDragEnd}>

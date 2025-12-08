@@ -16,25 +16,26 @@ export default function TaskItem({ task, onComplete, provided }) {
                 <p className="text-xs text-gray-500">Due: {task.dueDate}</p>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-3">
                 {isAdmin() && task.status !== "Completed" && (
                     <button
                         onClick={() => onComplete(task.id)}
-                        className="text-green-600 text-xs font-semibold"
+                        className="px-2 py-1 text-xs font-medium rounded bg-green-100 text-green-700 hover:bg-green-200 transition"
                     >
-                        ✔ Done
+                        ✔ Mark as Completed
                     </button>
                 )}
 
-                {isAdmin() && (
+                {isAdmin() && task.status !== "Completed" && (
                     <Link
                         to={`/edit/${task.id}`}
-                        className="text-blue-600 text-xs font-semibold"
+                        className="px-2 py-1 text-xs font-medium rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition"
                     >
                         Edit
                     </Link>
                 )}
             </div>
+
         </div>
     );
 }

@@ -19,7 +19,6 @@ export default function TaskForm() {
 
     const [isCompleted, setIsCompleted] = useState(false);
 
-    // Load existing task
     useEffect(() => {
         if (isEdit) {
             const found = getSingleTask(id);
@@ -30,7 +29,6 @@ export default function TaskForm() {
         }
     }, [id, isEdit, getSingleTask]);
 
-    // Submit form
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -66,7 +64,6 @@ export default function TaskForm() {
 
                 <form onSubmit={handleSubmit} className="space-y-4">
 
-                    {/* Title */}
                     <div>
                         <label className="block text-gray-700 font-medium mb-1">Title</label>
                         <input
@@ -79,7 +76,6 @@ export default function TaskForm() {
                         />
                     </div>
 
-                    {/* Description */}
                     <div>
                         <label className="block text-gray-700 font-medium mb-1">
                             Description
@@ -93,7 +89,7 @@ export default function TaskForm() {
                         />
                     </div>
 
-                    {/* Status */}
+
                     <div>
                         <label className="block text-gray-700 font-medium mb-1">
                             Status
@@ -109,7 +105,7 @@ export default function TaskForm() {
                         </select>
                     </div>
 
-                    {/* Due Date */}
+
                     <div>
                         <label className="block text-gray-700 font-medium mb-1">Due Date</label>
                         <input

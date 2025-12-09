@@ -11,10 +11,8 @@ export default function App() {
     <Router>
       <Routes>
 
-        {/* Public Route */}
         <Route path="/login" element={<Login />} />
 
-        {/* Protected Routes */}
         <Route
           path="/tasks"
           element={
@@ -42,7 +40,6 @@ export default function App() {
           }
         />
 
-        {/* Default Route */}
         <Route path="*" element={<Login />} />
 
       </Routes>

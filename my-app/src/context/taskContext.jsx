@@ -7,7 +7,6 @@ const TaskContext = createContext();
 export const TaskProvider = ({ children }) => {
     const [tasks, setTasks] = useState([]);
 
-    // Load initial tasks ONCE
     useEffect(() => {
         axios.get("https://jsonplaceholder.typicode.com/todos").then((res) => {
             const formatted = res.data.slice(0, 20).map((t) => ({
@@ -22,7 +21,7 @@ export const TaskProvider = ({ children }) => {
         });
     }, []);
 
-    // CREATE TASK
+
     const createTask = (task) => {
         const newTask = {
             ...task,
@@ -32,17 +31,15 @@ export const TaskProvider = ({ children }) => {
         setTasks((prev) => [...prev, newTask]);
     };
 
-    // UPDATE TASK
+
     const updateTask = (updatedTask) => {
         setTasks((prev) =>
             prev.map((t) => (t.id === updatedTask.id ? updatedTask : t))
         );
     };
 
-    // GET SINGLE TASK
     const getSingleTask = (id) => tasks.find((t) => t.id === Number(id));
 
-    // MARK COMPLETE
     const markCompleted = (id) => {
         setTasks((prev) =>
             prev.map((t) =>

@@ -28,21 +28,16 @@ export default function TaskList() {
     const sourceIndex = result.source.index;
     const destIndex = result.destination.index;
 
-    // Identify tasks from filtered view
     const draggedTask = filtered[sourceIndex];
     const targetTask = filtered[destIndex];
 
-    // Get their actual index in main tasks array
     const oldIndex = tasks.findIndex((t) => t.id === draggedTask.id);
     const newIndex = tasks.findIndex((t) => t.id === targetTask.id);
 
-    // Clone original tasks array
     const updated = Array.from(tasks);
 
-    // Remove dragged item
     const [removed] = updated.splice(oldIndex, 1);
 
-    // Insert at new index
     updated.splice(newIndex, 0, removed);
 
     reorderTasks(updated);
@@ -59,7 +54,6 @@ export default function TaskList() {
           Task Management
         </h2>
 
-        {/* Search + Filter + Add Task */}
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-6">
           <div className="w-full md:w-1/2">
             <TaskSearch search={search} setSearch={setSearch} />
